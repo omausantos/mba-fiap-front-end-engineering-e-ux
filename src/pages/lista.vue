@@ -6,7 +6,17 @@
                 Olá, Rafael <img src="./../assets/exit.svg" alt="Sair do Sistema" />
             </div>
         </header>
-        <div id="container">CONTAINER</div>
+        <div id="container">
+            <header>
+                Tarefas <img src="./../assets/filtro.svg" alt="Pesquisar Tarefas" />
+            </header>
+            <div>
+                <div id="sem-tarefas">
+                    <img src="./../assets/man.png" alt="Nenhuma Tarefa Encontrada" />
+                    <p>Você ainda não possui tarefas cadastradas!</p>
+                </div>
+            </div>
+        </div>
         <footer>
             <button>
                 <img src="./../assets/more.svg" alt="Adicionar Tarefa" /> Adicionar uma tarefa
@@ -40,16 +50,34 @@ export default defineComponent({
 
 #container {
     flex-grow: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
 }
 
-header {
+#container>header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ededed;
+    border-radius: 8px;
+    align-items: center;
+    padding: 0 8px;
+}
+#container>div {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+#body>header {
     border-bottom: solid 1px #91A3AD;
-    padding: 24px;
+    padding: 24px 12px;
     display: flex;
     justify-content: space-between;
 }
 
-header div {
+#body>header div {
     display: flex;
     align-items: center;
 }
@@ -63,6 +91,7 @@ footer {
     justify-content: center;
     padding-bottom: 12px;
 }
+
 footer button {
     cursor: pointer;
     border: none;
@@ -74,7 +103,16 @@ footer button {
     padding: 8px;
     width: calc(100% - 24px);
 }
+
 footer button img {
     margin-right: 12px;
+}
+
+#sem-tarefas {
+    text-align: center;
+    width: 100%;
+}
+#sem-tarefas p {
+    margin-top: 8px;
 }
 </style>
