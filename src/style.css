@@ -37,6 +37,25 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
+
+input{
+	color: hsl(334, 82%, 51%);
+}
+
+.green {
+	color: green;
+}
+
+.red
+{
+	color: red;
+}
+
+.email::placeholder{
+    color:hsl(334, 82%, 51%) ;
+	opacity: 0.5;
+}
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -78,7 +97,9 @@ table {
     border: 0 none;
     outline: 0;
   }
-  
+  #app .fields button:disabled{
+	background-color: gray;
+  }
   #app .fields button {
 	background: hsl(334, 82%, 51%);
 	color: #fff;
@@ -94,6 +115,14 @@ table {
  .input{
 	margin-left: 8px;
  }
+
+ .password-toggle {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+  }
 
 
 
