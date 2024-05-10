@@ -22,10 +22,10 @@
                         </div>
                         <div class="descricao">
                             <h3>
-                                {{tarefa.title}}
+                                {{ tarefa.title }}
                             </h3>
                             <p>
-                                Conclusão em: {{tarefa.completed_at}}
+                                Conclusão em: {{ tarefa.completed_at }}
                             </p>
                         </div>
                     </li>
@@ -38,29 +38,21 @@
             </button>
         </footer>
     </div>
-    
+    <Modal />
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import api from "./../services/api";
+import Modal from "./../components/modal.vue";
 
-export default defineComponent({
-    name: "Lista",
-    setup() {
-        const tarefas = ref([]);
+const tarefas = ref([]);
 
-        const fetchTarefas = () => api.get("").then((response) => {
-            tarefas.value = response.data;
-        });
+const fetchTarefas = () => api.get("/tasks").then((response) => {
+    tarefas.value = response.data;
+});
 
-        onMounted(fetchTarefas);
-
-        return {
-            tarefas
-        }
-    }
-})
+onMounted(fetchTarefas);
 </script>
 
 <style scoped>
