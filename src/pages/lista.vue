@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Modal from './../components/modal.vue';
+</script>
+
 <template>
     <div id="body">
         <header>
@@ -11,34 +15,34 @@
                 Tarefas <img src="./../assets/filtro.svg" alt="Pesquisar Tarefas" />
             </header>
             <div>
-               <ul id="lista-tarefas">
-                <li>
-                    <div class="btn">
-                        <input type="radio" name="" id="">
-                    </div>
-                    <div class="descricao">
-                        <h3>
-                            Tarefa 1
-                        </h3>
-                        <p>
-                            Conclusão em: 01/10/2021
-                        </p>
-                    </div>
-                </li>
-                <li class="ok">
-                    <div class="btn">
-                        <input type="radio" name="" id="">
-                    </div>
-                    <div class="descricao">
-                        <h3>
-                            Tarefa 1
-                        </h3>
-                        <p>
-                            Conclusão em: 01/10/2021
-                        </p>
-                    </div>
-                </li>
-               </ul>
+                <ul id="lista-tarefas">
+                    <li>
+                        <div class="btn">
+                            <input type="radio" name="" id="">
+                        </div>
+                        <div class="descricao">
+                            <h3>
+                                Tarefa 1
+                            </h3>
+                            <p>
+                                Conclusão em: 01/10/2021
+                            </p>
+                        </div>
+                    </li>
+                    <li class="ok">
+                        <div class="btn">
+                            <input type="radio" name="" id="">
+                        </div>
+                        <div class="descricao">
+                            <h3>
+                                Tarefa 1
+                            </h3>
+                            <p>
+                                Conclusão em: 01/10/2021
+                            </p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <footer>
@@ -47,6 +51,7 @@
             </button>
         </footer>
     </div>
+    <Modal />
 </template>
 
 <script lang="ts">
@@ -54,9 +59,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
-
-
-        return {}
     }
 })
 </script>
@@ -87,9 +89,8 @@ export default defineComponent({
     align-items: center;
     padding: 0 8px;
 }
-#container>div {
-    
-}
+
+#container>div {}
 
 #lista-tarefas li {
     display: flex;
@@ -102,16 +103,20 @@ export default defineComponent({
     padding: 8px;
     margin: 8px 0;
 }
+
 #lista-tarefas li .btn {
     padding-right: 8px;
 }
+
 #lista-tarefas li .descricao {
     flex-grow: 1;
     line-height: 1.3rem;
 }
+
 #lista-tarefas li .descricao h3 {
     font-weight: bold;
 }
+
 #lista-tarefas li.ok .descricao h3 {
     text-decoration: line-through;
 }
@@ -159,6 +164,7 @@ footer button img {
     text-align: center;
     width: 100%;
 }
+
 #sem-tarefas p {
     margin-top: 8px;
 }
