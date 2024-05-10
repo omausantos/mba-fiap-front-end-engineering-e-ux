@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import Modal from './../components/modal.vue';
-</script>
-
 <template>
     <div id="body">
         <header>
@@ -16,29 +12,16 @@ import Modal from './../components/modal.vue';
             </header>
             <div>
                 <ul id="lista-tarefas">
-                    <li>
+                    <li v-for="(tarefa, i) in tarefas" :key="i">
                         <div class="btn">
                             <input type="radio" name="" id="">
                         </div>
                         <div class="descricao">
                             <h3>
-                                Tarefa 1
+                                {{tarefa.title}}
                             </h3>
                             <p>
-                                Conclusão em: 01/10/2021
-                            </p>
-                        </div>
-                    </li>
-                    <li class="ok">
-                        <div class="btn">
-                            <input type="radio" name="" id="">
-                        </div>
-                        <div class="descricao">
-                            <h3>
-                                Tarefa 1
-                            </h3>
-                            <p>
-                                Conclusão em: 01/10/2021
+                                Conclusão em: {{tarefa.completed_at}}
                             </p>
                         </div>
                     </li>
@@ -51,14 +34,27 @@ import Modal from './../components/modal.vue';
             </button>
         </footer>
     </div>
-    <Modal />
+    
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue';
+import api from "./../services/api";
 
 export default defineComponent({
+    name: "Lista",
     setup() {
+        const tarefas = ref([]);
+
+        const fetchTarefas = () => api.get("").then((response) => {
+            tarefas.value = response.data;
+        });
+
+        onMounted(fetchTarefas);
+
+        return {
+            tarefas
+        }
     }
 })
 </script>
