@@ -11,7 +11,11 @@
                 Tarefas <img src="./../assets/filtro.svg" alt="Pesquisar Tarefas" />
             </header>
             <div>
-                <ul id="lista-tarefas">
+                <div id="sem-tarefas" v-if="tarefas.length < 1">
+                    <img src="./../assets/man.png" alt="Nenhuma Tarefas" />
+                    <p>Você ainda não possui tarefas cadastradas!</p>
+                </div>
+                <ul v-if="tarefas.length > 0" id="lista-tarefas">
                     <li v-for="(tarefa, i) in tarefas" :key="i">
                         <div class="btn">
                             <input type="radio" name="" id="">
@@ -86,7 +90,11 @@ export default defineComponent({
     padding: 0 8px;
 }
 
-#container>div {}
+#sem-tarefas {
+    text-align: center;
+    margin-top: 40%;
+    line-height: 1.5rem;
+}
 
 #lista-tarefas li {
     display: flex;
@@ -116,7 +124,6 @@ export default defineComponent({
 #lista-tarefas li.ok .descricao h3 {
     text-decoration: line-through;
 }
-
 
 #body>header {
     border-bottom: solid 1px #91A3AD;
