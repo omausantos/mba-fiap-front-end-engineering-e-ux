@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Login from './pages/login.vue'
+import Lista from './pages/lista.vue';
 </script>
 
 <template>
-  <Login />
+  <Lista />
 </template>
