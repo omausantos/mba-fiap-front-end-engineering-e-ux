@@ -33,12 +33,12 @@
             </div>
         </div>
         <footer>
-            <button>
+            <button @click="openModal()">
                 <img src="./../assets/more.svg" alt="Adicionar Tarefa" /> Adicionar uma tarefa
             </button>
         </footer>
     </div>
-    <Modal />
+    <Modal ref="modalAdd"/>
 </template>
 
 <script setup lang="ts">
@@ -47,12 +47,17 @@ import api from "./../services/api";
 import Modal from "./../components/modal.vue";
 
 const tarefas = ref([]);
-
 const fetchTarefas = () => api.get("/tasks").then((response) => {
     tarefas.value = response.data;
 });
 
 onMounted(fetchTarefas);
+
+const modalAdd = ref(null);
+
+function openModal() {
+    modalAdd.value.modalAddChange();
+}
 </script>
 
 <style scoped>

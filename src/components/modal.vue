@@ -1,5 +1,5 @@
 <template>
-    <div id="shadow">
+    <div id="shadow" v-if="modalAdd">
         <div id="modal">
             <h3>Adicionar uma tarefa</h3>
             <input type="text" placeholder="Adicionar uma tarefa">
@@ -8,7 +8,7 @@
                 <button>
                     Salvar
                 </button>
-                <button class="cancel">
+                <button @click="modalAddChange()" class="cancel">
                     Cancelar
                 </button>
             </footer>
@@ -17,7 +17,15 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 
+const modalAdd = ref(false);
+const modalAddChange = () => {
+    modalAdd.value = !modalAdd.value;
+}
+defineExpose({
+    modalAddChange
+})
 </script>
 
 <style scoped>
@@ -37,7 +45,7 @@
 #modal {
     padding: 16px;
     background-color: #fff;
-    border-radius: 8px;    
+    border-radius: 8px;
 }
 
 input[type=text] {
@@ -47,16 +55,19 @@ input[type=text] {
     width: calc(100% - 16px);
     margin-bottom: 16px;
 }
+
 h3 {
     margin-bottom: 16px;
     text-align: center;
     color: #ED1164;
     font-weight: bold;
 }
+
 footer {
     display: flex;
     justify-content: center;
 }
+
 button {
     border-radius: 8px;
     background-color: #91A3AD;
@@ -65,9 +76,10 @@ button {
     padding: 16px 24px;
     margin: 0 12px;
     text-align: center;
-    border:none;
+    border: none;
     cursor: pointer;
 }
+
 button.cancel {
     background-color: transparent;
     color: #91A3AD;
