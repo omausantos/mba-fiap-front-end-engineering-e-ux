@@ -18,7 +18,8 @@
                 <ul v-if="tarefas.length > 0" id="lista-tarefas">
                     <li v-for="(tarefa, i) in tarefas" :key="i" v-bind:class="tarefa.completed === 1 ? 'ok' : ''">
                         <div class="btn">
-                            <input type="radio" :value="tarefa.id" :checked="tarefa.completed === 1 ? true : false">
+                            <input type="radio" @click="updateStatus(tarefa)"
+                                :checked="tarefa.completed === 1 ? true : false">
                         </div>
                         <div class="descricao">
                             <h3>
@@ -58,6 +59,19 @@ const modalAdd = ref(null);
 
 function openModal() {
     modalAdd.value.modalAddChange();
+}
+
+function updateStatus(tarefa): void {
+    tarefa.status = !tarefa.completed;
+    updateTarefa(tarefa)
+}
+
+function updateTarefa(tarefa): void {
+    api
+        .patch("/tasks/" + tarefa.id, tarefa)
+        .then((response) => {
+            window.location.href = window.location.origin;
+        })
 }
 </script>
 
