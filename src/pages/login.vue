@@ -10,11 +10,13 @@
                         <input type="text" class="email" v-model="username"  placeholder="rafael@verzel.com.br">
                     </div>
                     <div class ="field">
-                        <i class="pi pi-lock" style="color: hsl(334, 82%, 51%);"></i>
-                        <input class="input" v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="Senha">
-                        <span @click="togglePasswordVisibility" class="password-toggle">
-                            <i :class="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
-                        </span>
+                        <div class="password-container">
+                            <i class="pi pi-lock" style="color: hsl(334, 82%, 51%);"></i>
+                            <input class="input" v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="Senha">
+                            <span @click="togglePasswordVisibility" class="password-toggle">
+                                <i :class="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+                            </span>
+                        </div>
                     </div>
                     <div class="form-footer"> 
                         <a href="#" class="reset" ></a>
@@ -58,7 +60,6 @@
                 .then((response) => {
                  this.message = response.data.message
                  this.cssClass = "green";
-
                 })
                 .catch((error) => {
                     this.message = error.response.data.error

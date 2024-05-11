@@ -112,16 +112,37 @@ table {
 	height: 40px;
   }
 
- .input{
+  .input {
 	margin-left: 8px;
+	padding: 8px 12px;
+	margin-right: 10px;
+	border-top: none;
+  	border-left: none;
+  	border-right: none;
+	align-items: center;
  }
 
+ .email {
+	margin-left: 8px;
+	padding: 8px 12px;
+	margin-right: 10px;
+	border-top: none;
+  	border-left: none;
+  	border-right: none;
+	align-items: center;
+ }
+
+ .password-container {
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    margin-right: 0px;
+}
+
  .password-toggle {
-	position: absolute;
-	right: 10px;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
+	flex: 1;
   }
 
 
