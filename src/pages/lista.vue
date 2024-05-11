@@ -16,16 +16,17 @@
                     <p>Você ainda não possui tarefas cadastradas!</p>
                 </div>
                 <ul v-if="tarefas.length > 0" id="lista-tarefas">
-                    <li v-for="(tarefa, i) in tarefas" :key="i">
+                    <li v-for="(tarefa, i) in tarefas" :key="i" v-bind:class="tarefa.completed === 1 ? 'ok' : ''">
                         <div class="btn">
-                            <input type="radio" name="" id="">
+                            <input type="radio" :value="tarefa.id" :checked="tarefa.completed === 1 ? true : false">
                         </div>
                         <div class="descricao">
                             <h3>
                                 {{ tarefa.title }}
                             </h3>
                             <p>
-                                Conclusão em: {{ tarefa.completed_at }}
+                                <span v-if="tarefa.completed === 1">Concluído</span>
+                                <span v-else>Conclusão</span> em: {{ tarefa.completed_at }}
                             </p>
                         </div>
                     </li>
@@ -38,7 +39,7 @@
             </button>
         </footer>
     </div>
-    <Modal ref="modalAdd"/>
+    <Modal ref="modalAdd" />
 </template>
 
 <script setup lang="ts">
