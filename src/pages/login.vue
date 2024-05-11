@@ -32,6 +32,7 @@
 <script lang="ts">
 import 'primeicons/primeicons.css'
 import api from "./../services/api";
+import { useRouter } from 'vue-router';
 
 export default {
     data() {
@@ -62,6 +63,8 @@ export default {
                 .then((response) => {
                     this.message = response.data.message
                     this.cssClass = "green";
+
+                    this.$router.push('/lista');
                 })
                 .catch((error) => {
                     this.message = error.response.data.error

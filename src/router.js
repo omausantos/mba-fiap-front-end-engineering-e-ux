@@ -3,11 +3,8 @@ import Login from './pages/login.vue';
 import Lista from './pages/lista.vue';
 
 const routes = [
-  {
-    path: "/",
-    name: "Lista",
-    component: Lista,
-  }
+  { path: '/', component: Login },
+  { path: '/lista', component: Lista }
 ];
 
 const router = createRouter({
