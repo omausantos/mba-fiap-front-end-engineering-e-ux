@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Lista from './pages/lista.vue';
+
 </script>
 
 <template>
-  <Lista />
+  <router-view></router-view>
 </template>
