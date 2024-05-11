@@ -2,22 +2,23 @@
     <div id="shadow" v-if="modalAdd">
         <div id="modal">
             <h3>Adicionar uma tarefa</h3>
-            <input type="text" placeholder="Adicionar uma tarefa">
-            <input type="text" placeholder="Data de conclusão">
-            <footer>
-                <button>
-                    Salvar
-                </button>
-                <button @click="modalAddChange()" class="cancel">
-                    Cancelar
-                </button>
-            </footer>
+            <form @submit.prevent="salvaTarefa" ref="myForm">
+                <input type="text" required placeholder="Adicionar uma tarefa" name="title" id="title">
+                <input type="datetime-local" required placeholder="Data de conclusão" name="dueDate" id="dueDate">
+                <footer>
+                    <input type="submit" value="Salvar">
+                    <button @click="modalAddChange()" class="cancel">
+                        Cancelar
+                    </button>
+                </footer>
+            </form>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import api from '../services/api';
 
 const modalAdd = ref(false);
 const modalAddChange = () => {
@@ -26,6 +27,19 @@ const modalAddChange = () => {
 defineExpose({
     modalAddChange
 })
+
+function salvaTarefa(submitEvent): void {
+    const values = {
+        title: submitEvent.target.elements.title.value,
+        dueDate: submitEvent.target.elements.dueDate.value.split('T')[0],
+        status: false
+    }
+    api
+        .post("/tasks", values)
+        .then((response) => {
+            console.log(response)
+        })
+}
 </script>
 
 <style scoped>
@@ -48,7 +62,8 @@ defineExpose({
     border-radius: 8px;
 }
 
-input[type=text] {
+input[type=text],
+input[type=datetime-local] {
     padding: 4px 8px;
     border-radius: 8px;
     border: 1px #91A3AD solid;
@@ -68,7 +83,8 @@ footer {
     justify-content: center;
 }
 
-button {
+button,
+input[type=submit] {
     border-radius: 8px;
     background-color: #91A3AD;
     color: #fff;
