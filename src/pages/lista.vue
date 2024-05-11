@@ -3,7 +3,7 @@
         <header>
             <img src="./../assets/mini-logo-fiap.svg" class="logo fiap" alt="FIAP logo" />
             <div>
-                Olá, Rafael <img src="./../assets/exit.svg" alt="Sair do Sistema" />
+                Olá, Usuário <img src="./../assets/exit.svg" alt="Sair do Sistema" @click="logout()" />
             </div>
         </header>
         <div id="container">
@@ -57,6 +57,10 @@ onMounted(fetchTarefas);
 
 const modalAdd = ref(null);
 
+function logout(): void {
+    window.location.href = window.location.origin;
+}
+
 function openModal() {
     modalAdd.value.modalAddChange();
 }
@@ -70,7 +74,7 @@ function updateTarefa(tarefa): void {
     api
         .patch("/tasks/" + tarefa.id, tarefa)
         .then((response) => {
-            window.location.href = window.location.origin;
+            window.location.reload()
         })
 }
 </script>
@@ -151,6 +155,7 @@ function updateTarefa(tarefa): void {
 
 header div img {
     margin-left: 8px;
+    cursor: pointer;
 }
 
 footer {

@@ -37,7 +37,7 @@ function salvaTarefa(submitEvent): void {
     api
         .post("/tasks", values)
         .then((response) => {
-            window.location.href = window.location.origin;
+            window.location.reload();
         })
 }
 </script>
